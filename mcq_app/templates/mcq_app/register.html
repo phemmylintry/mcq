@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if request.user.is_active %}
+    <form class="mb-3" method="POST" action="">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" class="button" value="{{ title }}"> 
+    </form>
+    {% else %}
+        <p>hello</p>
+    {% endif %}
+{% endblock %}
