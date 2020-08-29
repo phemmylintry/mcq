@@ -4,6 +4,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, UserLoginForm
 # # Create your views here.
+
+def home(request):
+    context = {}
+    return render(request, 'mcq_app/home.html', context=context)
+
 @login_required()
 def index(request):
     return render(request, 'mcq_app/index.html')

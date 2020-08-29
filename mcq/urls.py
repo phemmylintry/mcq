@@ -19,7 +19,7 @@ from mcq_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+    path('', views.home, name='home'),
     path('_nested_admin', include('nested_admin.urls')),
     path('', include('mcq_app.urls', namespace='mcq_app'))
 ]
