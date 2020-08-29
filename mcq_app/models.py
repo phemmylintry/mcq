@@ -56,16 +56,28 @@ class QuizProfile(TimeStampedModel):
         if selected_choice.is_correct is True:
             attempted_question.is_correct = True
             attempted_question.marks_obtained = attempted_question.question.maximum_marks
+        
 
         attempted_question.save()
         self.update_score()
 
     def update_score(self):
-        marks_sum = self.attempts.filter(is_correct=True).aggregate(
-            models.Sum('marks_obtained'))['marks_obtained__sum']
+        marks_sum = self.attempts.filter(is_correct=True).aggregate(models.Sum('marks_obtained'))['marks_obtained__sum']
+        full_mark = 15
+        try:
+            mark = (marks_sum * 100) / full_mark
+            print(mark)
+            if mark > 75:
+                mark = "Passed"
+            else:
+                mark = "Failed"
+        except:
+            mark = 0
+        print(mark)
         self.total_score = marks_sum or 0
         self.save()
-
+        return mark
+        
 
 class AttemptedQuestion(TimeStampedModel):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)

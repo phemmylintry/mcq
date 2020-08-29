@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if question is None %}
+<div class="container">
+  <div class="jumbotron my-4">
+    {% if percent is None %}
+    <h1> You have come to the end of the quiz </h2>
+    {% else %}
+    <h1> You have come to the end of the quiz, you have {{ percent }}</h2>
+    {% endif %}
+  </div>
+</div>
+
+{% else %}
     <h2 class="story_title">Story</h2>
     <div class="story">
         {% for story in storys %}
@@ -28,4 +41,5 @@
           </form>
         </div>
       </div>
+{% endif %}
 {% endblock %}

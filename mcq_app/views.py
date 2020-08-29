@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 from .models import QuizProfile, Question, AttemptedQuestion, Story
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, UserLoginForm
@@ -17,12 +19,13 @@ def index(request):
 def quiz(request):
     storys = Story.objects.all()
     quiz_profile, created = QuizProfile.objects.get_or_create(user=request.user)
+    
+    percent = quiz_profile.update_score()
 
     if request.method == 'POST':
         question_pk = request.POST.get('question_pk')
 
         attempted_question = quiz_profile.attempts.select_related('question').get(question__pk=question_pk)
-
         choice_pk = request.POST.get('choice_pk')
 
         try:
@@ -41,10 +44,11 @@ def quiz(request):
 
         context = {
             'question': question,
-            'storys': storys
+            'storys': storys,
+            'percent': percent
         }
 
-        return render(request, 'mcq_app/quiz.html', context=context)
+        return render(request, 'mcq_app/quiz.html', context)
 
 @login_required()
 def submission_result(request, attempted_question_pk):
@@ -63,7 +67,7 @@ def login_view(request):
         password = form.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
         login(request, user)
-        return redirect('/')
+        return redirect('/index')
     return render(request, 'mcq_app/login.html', {"form": form, "title": title})
 
 
