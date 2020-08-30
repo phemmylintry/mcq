@@ -58,6 +58,10 @@ def submission_result(request, attempted_question_pk):
     }
     return render(request, 'mcq_app/submission_result.html', context=context)
 
+@login_required()
+def countdown(request):
+    return redirect('/quiz')
+
 
 def login_view(request):
     title = "Login"

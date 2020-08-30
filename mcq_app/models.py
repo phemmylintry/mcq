@@ -73,6 +73,7 @@ class QuizProfile(TimeStampedModel):
                 mark = "Failed"
         except:
             mark = 0
+            mark = "Failed"
         print(mark)
         self.total_score = marks_sum or 0
         self.save()

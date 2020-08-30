@@ -6,9 +6,10 @@
 <div class="container">
   <div class="jumbotron my-4">
     {% if percent is None %}
-    <h1> You have come to the end of the quiz </h2>
+    <h1> You have come to the end of the assessment </h2>
     {% else %}
-    <h1> You have come to the end of the quiz, you have {{ percent }}</h2>
+    <h1> You have come to the end of the assessment, you have <span class="percent">{{ percent }}</span></h2>
+    <p> if you passed you will receive an email on the next steps. Thank you</p>
     {% endif %}
   </div>
 </div>
@@ -23,7 +24,7 @@
     <h3>Questions</h3>
     <div class="container">
         <div class="jumbotron my-4">
-      
+          <div class="countdown"><span id="count"></span></div>
           <h3 class="text-info">{{ question.html|safe }}</h3>
           <form class="form" action="" method="post">
               {% csrf_token %}
@@ -37,9 +38,30 @@
                 </div>
       
               {% endfor %}
-              <input class="btn btn-info btn-lg" type="submit" value="Submit">  
+              <input class="login" type="submit" value="Submit">  
           </form>
+          
         </div>
+
       </div>
+<script type="text/javascript">
+  var count = 15;
+  var interval = setInterval(function(){
+    document.getElementById('count').innerHTML=count;
+    count--;
+    if (count === 0){
+      clearInterval(interval);
+      document.getElementById('count').innerHTML='Time Up';
+      // or...
+      //alert("You're out of time!");
+      //$.ajax({
+      //  url = '/countdown/',
+      //  data : {
+       //   'count': count
+      //  },
+      //});
+    }
+  }, 1000);
+</script>
 {% endif %}
 {% endblock %}
