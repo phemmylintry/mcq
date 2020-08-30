@@ -63,7 +63,7 @@ class QuizProfile(TimeStampedModel):
 
     def update_score(self):
         marks_sum = self.attempts.filter(is_correct=True).aggregate(models.Sum('marks_obtained'))['marks_obtained__sum']
-        full_mark = 15
+        full_mark = 50
         try:
             mark = (marks_sum * 100) / full_mark
             print(mark)
