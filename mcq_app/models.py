@@ -88,4 +88,4 @@ class AttemptedQuestion(TimeStampedModel):
     marks_obtained = models.DecimalField(_('Marks Obtained'), default=0, decimal_places=2, max_digits=6)
 
     def get_absolute_url(self):
-        return f'/submission_result/{self.pk}/'
+        return f'/quiz/'
