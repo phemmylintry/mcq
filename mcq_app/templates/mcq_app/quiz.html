@@ -51,15 +51,7 @@
     count--;
     if (count === 0){
       clearInterval(interval);
-      document.getElementById('count').innerHTML='Time Up';
-      // or...
-      //alert("You're out of time!");
-      //$.ajax({
-      //  url = '/countdown/',
-      //  data : {
-       //   'count': count
-      //  },
-      //});
+      location.reload(true);
     }
   }, 1000);
 </script>
