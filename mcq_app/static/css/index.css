@@ -177,3 +177,12 @@ p {
     border-radius: 4px;
     cursor: pointer;
 }
+.take-assessment {
+    color: #011b33;
+}
+.take-assessment a {
+    text-decoration: none;
+}
+.take-assessment a:visited {
+    color: #011b33;
+}
