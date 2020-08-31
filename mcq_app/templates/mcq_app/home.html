@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Let's Quiz | Home {% endblock title %}
+{% block title %} Grants4all | Home {% endblock title %}
 {% block content %}
 
     <section class="text-align:center" style="text-align: center;">
@@ -14,7 +14,7 @@
         <p><strong> Start Your Journey Here:</strong></p>
         <div class="sign-up-home"><a href="{% url 'mcq_app:register' %}">Sign Up</a></div>
         {% else %}
-        <a href="{% url 'mcq_app:quiz' %}" class="btn btn-lg btn-info mt-1">Let's play</a>
+        <a href="{% url 'mcq_app:quiz' %}" class="btn btn-lg btn-info mt-1">Take assessment</a>
         {% endif %}
       </div>  
     </section>

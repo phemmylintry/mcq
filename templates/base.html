@@ -20,7 +20,7 @@
             {% else %}
             <div style="float:right" class="navbar-content-right">
                 <li><h6 class="welcome">{{ request.user.username }} |</h6></li>
-                <li><h6 class="welcome"><a href="{% url 'mcq_app:quiz' %}" class="text-white">Take Quiz  | </a></h6></li>
+                <li><h6 class="welcome"><a href="{% url 'mcq_app:quiz' %}" class="text-white">Take assessment  | </a></h6></li>
                 <li><a href="{% url 'mcq_app:logout' %}" class="login-button">Log Out</a></li>
             </div>
             {% endif %}

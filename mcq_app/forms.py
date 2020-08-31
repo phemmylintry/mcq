@@ -50,14 +50,13 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = [
-            'username',
-            'first_name',
-            'last_name',
-            'email',
-            'password1',
-            'password2',
-        ]
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+        help_texts = {
+            'username': None,
+            'email': None,
+            'password1': None
+        }
+
 
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
@@ -67,7 +66,6 @@ class RegistrationForm(UserCreationForm):
 
         if commit:
             user.save()
-
         return user
 
 class UserLoginForm(forms.Form):
